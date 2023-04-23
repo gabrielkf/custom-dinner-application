@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-    <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
-        <Nullable>enable</Nullable>
-        <ImplicitUsings>enable</ImplicitUsings>
-    </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>e4d492af-5eeb-4a06-ba9f-318e5d8d8373</UserSecretsId>
+  </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\CustomDinner.Contracts\CustomDinner.Contracts.csproj" />
-      <ProjectReference Include="..\CustomDinner.Domain\CustomDinner.Domain.csproj" />
-      <ProjectReference Include="..\CustomDinner.Infrastructure\CustomDinner.Infrastructure.csproj" />
-    </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomDinner.Contracts\CustomDinner.Contracts.csproj" />
+    <ProjectReference Include="..\CustomDinner.Domain\CustomDinner.Domain.csproj" />
+    <ProjectReference Include="..\CustomDinner.Infrastructure\CustomDinner.Infrastructure.csproj" />
+  </ItemGroup>
 
 </Project>
