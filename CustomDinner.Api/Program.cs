@@ -1,9 +1,12 @@
-using CustomDinner.Application.Injection;
+using CustomDinner.Application;
+using CustomDinner.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddApplication();
+builder.Services
+    .AddApplication()
+    .AddInfrastructure();
 
 var app = builder.Build();
 
