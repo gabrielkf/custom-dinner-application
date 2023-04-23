@@ -1,6 +1,9 @@
-using Contracts.Authentication;
+using System.Net;
 
+using Contracts.Authentication;
+using CustomDinner.Application.Services.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CustomDinner.Api.Controllers;
 
@@ -8,15 +11,46 @@ namespace CustomDinner.Api.Controllers;
 [Route("auth")]
 public class AuthenticationController : ControllerBase
 {
+    private readonly IAuthenticationService _authenticationService;
+
+    public AuthenticationController(IAuthenticationService authenticationService)
+    {
+        _authenticationService = authenticationService;
+    }
+
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest registerRequest)
     {
-        return Ok();
+        var registerResult = _authenticationService.Register(
+            registerRequest.FirstName,
+            registerRequest.LastName,
+            registerRequest.Email,
+            registerRequest.Password);
+
+        var registerResponse = new AuthenticationResponse(
+            registerResult.Id,
+            registerResult.FirstName,
+            registerResult.LastName,
+            registerResult.Email,
+            registerResult.Token);
+        
+        return Ok(registerResponse);
     }
 
     [HttpPost("login")]
     public IActionResult Login(LoginRequest loginRequest)
     {
-        return Ok();
+        var loginResult = _authenticationService.Login(
+            loginRequest.Email,
+            loginRequest.Password);
+        
+        var loginResponse = new AuthenticationResponse(
+            loginResult.Id,
+            loginResult.FirstName,
+            loginResult.LastName,
+            loginResult.Email,
+            loginResult.Token);
+
+        return Ok(loginResponse);
     }
 }
