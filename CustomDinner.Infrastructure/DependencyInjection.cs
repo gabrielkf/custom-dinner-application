@@ -13,8 +13,7 @@ public static class DependencyInjection
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.Configure<JwtSettings>(
-            configuration.GetSection(nameof(JwtSettings)));
+        services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         return services;
     }
