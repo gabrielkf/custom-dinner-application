@@ -1,6 +1,7 @@
 using System.Net.Security;
 
 using CustomDinner.Application.Common.Interfaces.Authentication;
+using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Infrastructure.Authentication;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +15,7 @@ public static class DependencyInjection
         IConfiguration configuration)
     {
         services.Configure<JwtSettings>(configuration.GetSection(nameof(JwtSettings)));
+        services.AddScoped<IAuthenticationService, AuthenticationService>();
         services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
         return services;
     }

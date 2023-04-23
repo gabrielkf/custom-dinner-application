@@ -1,6 +1,7 @@
 using CustomDinner.Application.Common.Interfaces.Authentication;
+using CustomDinner.Application.Services.Authentication;
 
-namespace CustomDinner.Application.Services.Authentication;
+namespace CustomDinner.Infrastructure.Authentication;
 
 public class AuthenticationService : IAuthenticationService
 {
