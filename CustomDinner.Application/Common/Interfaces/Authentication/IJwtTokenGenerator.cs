@@ -1,6 +1,8 @@
+using CustomDinner.Domain.Entities;
+
 namespace CustomDinner.Application.Common.Interfaces.Authentication;
 
 public interface IJwtTokenGenerator
 {
-    string GenerateToken(Guid userId, string firstName, string lastName);
+    string GenerateToken(User user);
 }

@@ -28,10 +28,10 @@ public class AuthenticationController : ControllerBase
             registerRequest.Password);
 
         var registerResponse = new AuthenticationResponse(
-            registerResult.Id,
-            registerResult.FirstName,
-            registerResult.LastName,
-            registerResult.Email,
+            registerResult.User.Id,
+            registerResult.User.FirstName,
+            registerResult.User.LastName,
+            registerResult.User.Email,
             registerResult.Token);
         
         return Ok(registerResponse);
@@ -45,10 +45,10 @@ public class AuthenticationController : ControllerBase
             loginRequest.Password);
         
         var loginResponse = new AuthenticationResponse(
-            loginResult.Id,
-            loginResult.FirstName,
-            loginResult.LastName,
-            loginResult.Email,
+            loginResult.User.Id,
+            loginResult.User.FirstName,
+            loginResult.User.LastName,
+            loginResult.User.Email,
             loginResult.Token);
 
         return Ok(loginResponse);
