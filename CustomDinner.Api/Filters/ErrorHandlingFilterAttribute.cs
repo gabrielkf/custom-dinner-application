@@ -7,13 +7,15 @@ public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
 {
     public override void OnException(ExceptionContext context)
     {
-        var exception = context.Exception;
-        
-        context.Result = new ObjectResult(new { error = exception.Message })
+        var problemDetails = new ProblemDetails
         {
-            StatusCode = StatusCodes.Status500InternalServerError
+            Type = "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status/500",
+            Instance = context.HttpContext.Request.Path,
+            Status = StatusCodes.Status500InternalServerError,
+            Detail = context.Exception.Message
         };
-
+        
+        context.Result = new ObjectResult(problemDetails);
         context.ExceptionHandled = true;
     }
 }
