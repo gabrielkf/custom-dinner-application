@@ -9,7 +9,7 @@ public class ErrorHandlingFilterAttribute : ExceptionFilterAttribute
     {
         var exception = context.Exception;
         
-        context.Result = new ObjectResult(new { error = "Bad thing have happened - Filter" })
+        context.Result = new ObjectResult(new { error = exception.Message })
         {
             StatusCode = StatusCodes.Status500InternalServerError
         };

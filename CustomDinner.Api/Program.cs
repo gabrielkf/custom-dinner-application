@@ -1,15 +1,17 @@
+using CustomDinner.Api.Filters;
 using CustomDinner.Application;
 using CustomDinner.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
-var app = builder.Build();
+builder.Services.AddControllers(options => 
+    options.Filters.Add<ErrorHandlingFilterAttribute>());
 
+var app = builder.Build();
 app.UseHttpsRedirection();
 app.MapControllers();
 

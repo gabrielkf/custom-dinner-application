@@ -10,7 +10,6 @@ namespace CustomDinner.Api.Controllers;
 
 [ApiController]
 [Route("auth")]
-[ErrorHandlingFilter]
 public class AuthenticationController : ControllerBase
 {
     private readonly IAuthenticationService _authenticationService;
