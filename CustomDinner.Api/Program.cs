@@ -1,4 +1,3 @@
-using CustomDinner.Api.Filters;
 using CustomDinner.Application;
 using CustomDinner.Infrastructure;
 
@@ -8,11 +7,11 @@ builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
 
-builder.Services.AddControllers(options => 
-    options.Filters.Add<ErrorHandlingFilterAttribute>());
+builder.Services.AddControllers();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.MapControllers();
+app.UseExceptionHandler("/errors");
 
 app.Run();
