@@ -1,10 +1,6 @@
-using System.Net;
-
 using Contracts.Authentication;
-using CustomDinner.Api.Filters;
 using CustomDinner.Application.Services.Authentication;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 namespace CustomDinner.Api.Controllers;
 

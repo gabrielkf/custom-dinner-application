@@ -1,15 +1,14 @@
-using CustomDinner.Api.Filters;
+using CustomDinner.Api.Errors;
 using CustomDinner.Application;
 using CustomDinner.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddControllers();
 builder.Services
     .AddApplication()
     .AddInfrastructure(builder.Configuration);
-
-builder.Services.AddControllers(options => 
-    options.Filters.Add<ErrorHandlingFilterAttribute>());
+builder.Services.AddSingleton<ProblemDetailsFactory, CustomProblemDetailsFactory>();
 
 var app = builder.Build();
 app.UseHttpsRedirection();
