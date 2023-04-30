@@ -18,12 +18,17 @@ public class AuthenticationService : IAuthenticationService
 
     public AuthenticationResult Register(string firstName, string lastName, string email, string password)
     {
-        var user = _userRepository.GetUserByEmail(email);
-        
-        if (user is not null)
-            throw new Exception("Email already registered");
+        if (_userRepository.GetUserByEmail(email) is not null)
+            throw new Exception("User already registered");
 
-        user = new User { FirstName = firstName, LastName = lastName, Email = email, Password = password };
+        var user = new User
+        {
+            FirstName = firstName,
+            LastName = lastName,
+            Email = email,
+            Password = password
+        };
+        
         _userRepository.Add(user);
         
         var jwtToken = _jwtTokenGenerator.GenerateToken(user);

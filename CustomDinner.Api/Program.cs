@@ -1,4 +1,3 @@
-using CustomDinner.Api.Middleware;
 using CustomDinner.Application;
 using CustomDinner.Infrastructure;
 
@@ -11,7 +10,6 @@ builder.Services
 
 var app = builder.Build();
 
-app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 
