@@ -13,6 +13,6 @@ builder.Services.AddSingleton<ProblemDetailsFactory, CustomProblemDetailsFactory
 var app = builder.Build();
 app.UseHttpsRedirection();
 app.MapControllers();
-app.UseExceptionHandler("/errors");
+app.UseExceptionHandler("/error");
 
 app.Run();

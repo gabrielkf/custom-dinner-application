@@ -6,10 +6,11 @@ namespace CustomDinner.Api.Controllers;
 
 public class ErrorController : ControllerBase
 {
-    [Route("errors")]
+    [Route("error")]
     public IActionResult Error()
     {
-        const int status = StatusCodes.Status400BadRequest;
+        const int status = StatusCodes.Status500InternalServerError;
+        
         var exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
         
         return Problem(statusCode: status,
