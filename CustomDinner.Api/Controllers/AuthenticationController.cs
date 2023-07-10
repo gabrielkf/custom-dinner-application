@@ -1,12 +1,13 @@
 using Contracts.Authentication;
 using CustomDinner.Application.Services.Authentication;
+using CustomDinner.Domain.Common.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomDinner.Api.Controllers;
 
 [ApiController]
 [Route("auth")]
-public class AuthenticationController : ControllerBase
+public class AuthenticationController : ApiController
 {
     private readonly IAuthenticationService _authenticationService;
 
@@ -24,14 +25,15 @@ public class AuthenticationController : ControllerBase
             registerRequest.Email,
             registerRequest.Password);
 
-        var registerResponse = new AuthenticationResponse(
-            registerResult.User.Id,
-            registerResult.User.FirstName,
-            registerResult.User.LastName,
-            registerResult.User.Email,
-            registerResult.Token);
-        
-        return Ok(registerResponse);
+        return registerResult.Match(
+            success => Ok(
+                new AuthenticationResponse(
+                    success.User.Id,
+                    success.User.FirstName,
+                    success.User.LastName,
+                    success.User.Email,
+                    success.Token)),
+            errors => Problem(errors));
     }
 
     [HttpPost("login")]
@@ -40,14 +42,21 @@ public class AuthenticationController : ControllerBase
         var loginResult = _authenticationService.Login(
             loginRequest.Email,
             loginRequest.Password);
-        
-        var loginResponse = new AuthenticationResponse(
-            loginResult.User.Id,
-            loginResult.User.FirstName,
-            loginResult.User.LastName,
-            loginResult.User.Email,
-            loginResult.Token);
 
-        return Ok(loginResponse);
+        if (loginResult.IsError && loginResult == AppErrors.Authentication.InvalidCredentials)
+        {
+            return Problem(statusCode: StatusCodes.Status401Unauthorized,
+                title: loginResult.FirstError.Description);
+        }
+
+        return loginResult.Match(
+            success => Ok(
+                new AuthenticationResponse(
+                    success.User.Id,
+                    success.User.FirstName,
+                    success.User.LastName,
+                    success.User.Email,
+                    success.Token)),
+            errors => Problem(errors));
     }
 }

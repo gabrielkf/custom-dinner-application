@@ -1,4 +1,6 @@
 using System.Diagnostics;
+using CustomDinner.Api.Http;
+using ErrorOr;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
@@ -89,8 +91,11 @@ namespace CustomDinner.Api.Errors
             {
                 problemDetails.Extensions["traceId"] = traceId;
             }
-            
-            problemDetails.Extensions.Add("issuedBy", "CreatorTech");
+
+            if (httpContext?.Items[HttpContextItemKeys.Errors] is List<Error> errors)
+            {
+                problemDetails.Extensions.Add("errorCodes", errors.Select(e => e.Code));
+            }
         }
     }
 }

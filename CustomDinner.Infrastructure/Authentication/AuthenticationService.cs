@@ -2,6 +2,8 @@ using CustomDinner.Application.Common.Interfaces.Authentication;
 using CustomDinner.Application.Common.Persistence;
 using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Domain.Entities;
+using ErrorOr;
+using AppErrors = CustomDinner.Domain.Common.Errors.AppErrors;
 
 namespace CustomDinner.Infrastructure.Authentication;
 
@@ -16,10 +18,12 @@ public class AuthenticationService : IAuthenticationService
         _userRepository = userRepository;
     }
 
-    public AuthenticationResult Register(string firstName, string lastName, string email, string password)
+    public ErrorOr<AuthenticationResult> Register(string firstName, string lastName, string email, string password)
     {
         if (_userRepository.GetUserByEmail(email) is not null)
-            throw new Exception("User already registered");
+        {
+            return AppErrors.User.DuplicateEmail;
+        }
 
         var user = new User
         {
@@ -35,17 +39,13 @@ public class AuthenticationService : IAuthenticationService
         return new AuthenticationResult(user, jwtToken);
     }
 
-    public AuthenticationResult Login(string email, string password)
+    public ErrorOr<AuthenticationResult> Login(string email, string password)
     {
-        var user = _userRepository.GetUserByEmail(email);
+        if (_userRepository.GetUserByEmail(email) is not User user || user.Password != password)
+        {
+            return AppErrors.Authentication.InvalidCredentials;
+        }
 
-        if (user is null)
-            throw new Exception("User not found");
-
-        if (password != user.Password)
-            throw new Exception("Invalid password");
-        
-        
         var jwtToken = _jwtTokenGenerator.GenerateToken(user);
         
         return new AuthenticationResult(user, jwtToken);
