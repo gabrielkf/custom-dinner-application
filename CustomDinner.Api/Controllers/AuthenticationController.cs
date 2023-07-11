@@ -9,17 +9,20 @@ namespace CustomDinner.Api.Controllers;
 [Route("auth")]
 public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationService _authenticationService;
+    private readonly IAuthenticationCommandService _authenticationCommandService;
+    private readonly IAuthenticationQueryService _authenticationQueryService;
 
-    public AuthenticationController(IAuthenticationService authenticationService)
+    public AuthenticationController(IAuthenticationCommandService authenticationCommandService,
+        IAuthenticationQueryService authenticationQueryService)
     {
-        _authenticationService = authenticationService;
+        _authenticationCommandService = authenticationCommandService;
+        _authenticationQueryService = authenticationQueryService;
     }
 
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest registerRequest)
     {
-        var registerResult = _authenticationService.Register(
+        var registerResult = _authenticationCommandService.Register(
             registerRequest.FirstName,
             registerRequest.LastName,
             registerRequest.Email,
@@ -39,7 +42,7 @@ public class AuthenticationController : ApiController
     [HttpPost("login")]
     public IActionResult Login(LoginRequest loginRequest)
     {
-        var loginResult = _authenticationService.Login(
+        var loginResult = _authenticationQueryService.Login(
             loginRequest.Email,
             loginRequest.Password);
 
