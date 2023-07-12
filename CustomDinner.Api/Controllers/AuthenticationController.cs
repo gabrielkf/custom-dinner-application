@@ -1,6 +1,8 @@
 using Contracts.Authentication;
+using CustomDinner.Application.Authentication.Commands.Register;
 using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Domain.Common.Errors;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomDinner.Api.Controllers;
@@ -9,33 +11,28 @@ namespace CustomDinner.Api.Controllers;
 [Route("auth")]
 public class AuthenticationController : ApiController
 {
-    private readonly IAuthenticationCommandService _authenticationCommandService;
+    private readonly IMediator _mediator;
     private readonly IAuthenticationQueryService _authenticationQueryService;
 
-    public AuthenticationController(IAuthenticationCommandService authenticationCommandService,
-        IAuthenticationQueryService authenticationQueryService)
+    public AuthenticationController(IMediator mediator, IAuthenticationQueryService authenticationQueryService)
     {
-        _authenticationCommandService = authenticationCommandService;
+        _mediator = mediator;
         _authenticationQueryService = authenticationQueryService;
     }
 
     [HttpPost("register")]
-    public IActionResult Register(RegisterRequest registerRequest)
+    public async Task<IActionResult> Register(RegisterRequest registerRequest)
     {
-        var registerResult = _authenticationCommandService.Register(
+        var command = new RegisterCommand(
             registerRequest.FirstName,
             registerRequest.LastName,
             registerRequest.Email,
             registerRequest.Password);
 
+        var registerResult = await _mediator.Send(command);
+
         return registerResult.Match(
-            success => Ok(
-                new AuthenticationResponse(
-                    success.User.Id,
-                    success.User.FirstName,
-                    success.User.LastName,
-                    success.User.Email,
-                    success.Token)),
+            successResult => Ok(MapToAuthResponse(successResult)),
             errors => Problem(errors));
     }
 
@@ -53,13 +50,17 @@ public class AuthenticationController : ApiController
         }
 
         return loginResult.Match(
-            success => Ok(
-                new AuthenticationResponse(
-                    success.User.Id,
-                    success.User.FirstName,
-                    success.User.LastName,
-                    success.User.Email,
-                    success.Token)),
+            success => Ok(MapToAuthResponse(success)),
             errors => Problem(errors));
+    }
+
+    private static AuthenticationResponse MapToAuthResponse(AuthenticationResult authenticationResult)
+    {
+        return new AuthenticationResponse(
+            authenticationResult.User.Id,
+            authenticationResult.User.FirstName,
+            authenticationResult.User.LastName,
+            authenticationResult.User.Email,
+            authenticationResult.Token);
     }
 }
