@@ -6,6 +6,12 @@ public static class InfrastructureDependencies
 {
     public static IServiceCollection AddApplication(this IServiceCollection services)
     {
+        services.AddMediatR(cfg =>
+            cfg.RegisterServicesFromAssembly(
+                typeof(InfrastructureDependencies).Assembly));
+
+        // services.AddMediatR(typeof(InfrastructureDependencies).Assembly);
+        
         return services;
     }
 }

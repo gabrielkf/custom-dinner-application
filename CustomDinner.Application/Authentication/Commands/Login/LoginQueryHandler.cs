@@ -1,6 +1,6 @@
+using CustomDinner.Application.Authentication.Commands.Common;
 using CustomDinner.Application.Common.Interfaces.Authentication;
 using CustomDinner.Application.Common.Persistence;
-using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Domain.Common.Errors;
 using CustomDinner.Domain.Entities;
 using ErrorOr;

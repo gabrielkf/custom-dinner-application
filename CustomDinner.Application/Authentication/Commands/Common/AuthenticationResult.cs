@@ -1,6 +1,6 @@
 using CustomDinner.Domain.Entities;
 
-namespace CustomDinner.Application.Services.Authentication;
+namespace CustomDinner.Application.Authentication.Commands.Common;
 
 public record AuthenticationResult(
     User User,

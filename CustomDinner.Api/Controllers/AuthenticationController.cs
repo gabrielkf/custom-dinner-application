@@ -1,7 +1,7 @@
 using Contracts.Authentication;
+using CustomDinner.Application.Authentication.Commands.Common;
 using CustomDinner.Application.Authentication.Commands.Login;
 using CustomDinner.Application.Authentication.Commands.Register;
-using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Domain.Common.Errors;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +14,7 @@ public class AuthenticationController : ApiController
 {
     private readonly IMediator _mediator;
 
-    public AuthenticationController(IMediator mediator, IAuthenticationQueryService authenticationQueryService)
+    public AuthenticationController(IMediator mediator)
     {
         _mediator = mediator;
     }

@@ -1,4 +1,4 @@
-using CustomDinner.Application.Services.Authentication;
+using CustomDinner.Application.Authentication.Commands.Common;
 using ErrorOr;
 using MediatR;
 
