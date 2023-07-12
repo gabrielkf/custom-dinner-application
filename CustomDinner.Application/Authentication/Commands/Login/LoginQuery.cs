@@ -2,16 +2,12 @@ using CustomDinner.Application.Services.Authentication;
 using ErrorOr;
 using MediatR;
 
-namespace CustomDinner.Application.Authentication.Commands.Register;
+namespace CustomDinner.Application.Authentication.Commands.Login;
 
-public record RegisterCommand(
-    string FirstName,
-    string LastName,
+public record LoginQuery(
     string Email,
     string Password) : IRequest<ErrorOr<AuthenticationResult>>
 {
-    public readonly string FirstName = FirstName;
-    public readonly string LastName = LastName;
     public readonly string Email = Email;
     public readonly string Password = Password;
 }

@@ -40,7 +40,8 @@ public class RegisterCommandHandler
         
         _userRepository.Add(user);
         
-        return new AuthenticationResult(user,
-            _jwtTokenGenerator.GenerateToken(user));
+        var token = _jwtTokenGenerator.GenerateToken(user);
+        
+        return new AuthenticationResult(user, token);
     }
 }

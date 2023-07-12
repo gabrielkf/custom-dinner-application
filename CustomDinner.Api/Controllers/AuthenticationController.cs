@@ -1,4 +1,5 @@
 using Contracts.Authentication;
+using CustomDinner.Application.Authentication.Commands.Login;
 using CustomDinner.Application.Authentication.Commands.Register;
 using CustomDinner.Application.Services.Authentication;
 using CustomDinner.Domain.Common.Errors;
@@ -12,12 +13,10 @@ namespace CustomDinner.Api.Controllers;
 public class AuthenticationController : ApiController
 {
     private readonly IMediator _mediator;
-    private readonly IAuthenticationQueryService _authenticationQueryService;
 
     public AuthenticationController(IMediator mediator, IAuthenticationQueryService authenticationQueryService)
     {
         _mediator = mediator;
-        _authenticationQueryService = authenticationQueryService;
     }
 
     [HttpPost("register")]
@@ -37,11 +36,13 @@ public class AuthenticationController : ApiController
     }
 
     [HttpPost("login")]
-    public IActionResult Login(LoginRequest loginRequest)
+    public async Task<IActionResult> Login(LoginRequest loginRequest)
     {
-        var loginResult = _authenticationQueryService.Login(
+        var query = new LoginQuery(
             loginRequest.Email,
             loginRequest.Password);
+
+        var loginResult = await _mediator.Send(query);
 
         if (loginResult.IsError && loginResult == AppErrors.Authentication.InvalidCredentials)
         {
