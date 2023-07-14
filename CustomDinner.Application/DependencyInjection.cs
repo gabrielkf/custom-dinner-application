@@ -9,8 +9,6 @@ public static class InfrastructureDependencies
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(
                 typeof(InfrastructureDependencies).Assembly));
-
-        // services.AddMediatR(typeof(InfrastructureDependencies).Assembly);
         
         return services;
     }
