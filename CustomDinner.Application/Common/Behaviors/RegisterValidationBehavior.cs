@@ -30,10 +30,9 @@ public class RegisterValidationBehavior : IPipelineBehavior<RegisterCommand, Err
         }
 
         var errors = validationResult.Errors
-            .Select(failure => Error.Validation(
+            .ConvertAll(failure => Error.Validation(
                 failure.PropertyName,
-                failure.ErrorMessage))
-            .ToList();
+                failure.ErrorMessage));
 
         return errors;
     }
