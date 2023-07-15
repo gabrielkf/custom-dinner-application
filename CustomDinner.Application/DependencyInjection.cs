@@ -1,3 +1,4 @@
+using System.Reflection;
 using CustomDinner.Application.Authentication.Commands.Common;
 using CustomDinner.Application.Authentication.Commands.Register;
 using CustomDinner.Application.Common.Behaviors;
@@ -20,7 +21,7 @@ public static class InfrastructureDependencies
             IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
             RegisterValidationBehavior>();
 
-        services.AddScoped<IValidator<RegisterCommand>, RegisterCommandValidator>();
+        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         
         return services;
     }
