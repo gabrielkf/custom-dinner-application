@@ -12,7 +12,8 @@ public static class InfrastructureDependencies
     {
         services.AddMediatR(cfg =>
             cfg.RegisterServicesFromAssembly(
-                typeof(InfrastructureDependencies).Assembly));
+                Assembly.GetExecutingAssembly()));
+                // typeof(InfrastructureDependencies).Assembly));
 
         services.AddScoped(
             typeof(IPipelineBehavior<,>),
