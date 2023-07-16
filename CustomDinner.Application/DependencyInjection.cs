@@ -1,8 +1,5 @@
 using System.Reflection;
-using CustomDinner.Application.Authentication.Commands.Common;
-using CustomDinner.Application.Authentication.Commands.Register;
 using CustomDinner.Application.Common.Behaviors;
-using ErrorOr;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,9 +14,9 @@ public static class InfrastructureDependencies
             cfg.RegisterServicesFromAssembly(
                 typeof(InfrastructureDependencies).Assembly));
 
-        services.AddScoped<
-            IPipelineBehavior<RegisterCommand, ErrorOr<AuthenticationResult>>,
-            RegisterValidationBehavior>();
+        services.AddScoped(
+            typeof(IPipelineBehavior<,>),
+            typeof(ValidationBehavior<,>));
 
         services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
         
