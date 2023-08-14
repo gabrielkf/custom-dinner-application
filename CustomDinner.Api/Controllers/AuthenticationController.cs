@@ -4,12 +4,13 @@ using CustomDinner.Application.Authentication.Commands.Register;
 using CustomDinner.Domain.Common.Errors;
 using MapsterMapper;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CustomDinner.Api.Controllers;
 
-[ApiController]
 [Route("auth")]
+[AllowAnonymous]
 public class AuthenticationController : ApiController
 {
     private readonly ISender _mediator;

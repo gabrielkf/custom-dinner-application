@@ -1,10 +1,13 @@
 using CustomDinner.Api.Http;
 using ErrorOr;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace CustomDinner.Api.Controllers;
 
+[ApiController]
+[Authorize]
 public class ApiController : ControllerBase
 {
     protected IActionResult Problem(List<Error> errors)
@@ -45,7 +48,7 @@ public class ApiController : ControllerBase
         return true;
     }
 
-    private IActionResult SelectedProblem(List<Error> errors)
+    private IActionResult SelectedProblem(IEnumerable<Error> errors)
     {
         var firstError = errors.FirstOrDefault();
 
