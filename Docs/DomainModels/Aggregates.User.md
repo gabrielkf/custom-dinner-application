@@ -8,7 +8,7 @@
   "firstName": "John",
   "lastName": "Doe",
   "email": "john.doe@company.com",
-  "password": "p455w0rd"
+  "password": "*******"
 }
 ```
 
