@@ -20,7 +20,7 @@ public abstract class ValueObject : IEquatable<ValueObject>
     public override int GetHashCode()
     {
         return GetEqualityComponents()
-            .Select(obj => obj?.GetHashCode() ?? 0)
+            .Select(obj => obj.GetHashCode())
             .Aggregate((x, y) => x ^ y);
     }
 
