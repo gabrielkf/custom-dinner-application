@@ -1,4 +1,4 @@
-using CustomDinner.Domain.Models;
+using CustomDinner.Domain.Common;
 
 namespace CustomDinner.Domain.Menu.ValueObjects;
 

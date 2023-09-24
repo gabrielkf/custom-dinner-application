@@ -1,5 +1,5 @@
+using CustomDinner.Domain.Common;
 using CustomDinner.Domain.Menu.ValueObjects;
-using CustomDinner.Domain.Models;
 
 namespace CustomDinner.Domain.Menu.Entities;
 

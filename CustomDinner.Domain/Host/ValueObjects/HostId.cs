@@ -1,23 +1,24 @@
 using CustomDinner.Domain.Common;
 
-namespace CustomDinner.Domain.Menu.ValueObjects;
+namespace CustomDinner.Domain.Host.ValueObjects;
 
-public sealed class MenuItemId : ValueObject
+public class HostId : ValueObject
 {
     public Guid Value { get; }
 
-    private MenuItemId(Guid value)
+    public HostId(Guid value)
     {
         Value = value;
     }
 
-    public static MenuItemId CreateUnique()
+    public static HostId CreateUnique()
     {
-        return new MenuItemId(Guid.NewGuid());
+        return new HostId(Guid.NewGuid());
     }
     
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
+
 }

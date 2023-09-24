@@ -1,4 +1,4 @@
-namespace CustomDinner.Domain.Models;
+namespace CustomDinner.Domain.Common;
 
 public abstract class ValueObject : IEquatable<ValueObject>
 {
