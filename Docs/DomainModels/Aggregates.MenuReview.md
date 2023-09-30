@@ -1,10 +1,10 @@
 # Domain Models
-## Bill
+## MenuReview
 
 ```csharp
-class Bill
+class MenuReview
 {
-    public static Bill Create();
+    public static MenuReview Create();
 }
     
 ```
@@ -12,9 +12,10 @@ class Bill
 ```json
 {
   "id": "00000000-0000-0000-0000-000000000000",
-  "dinnerId": "00000000-0000-0000-0000-000000000000",
+  "menuId": "00000000-0000-0000-0000-000000000000",
+  "hostId": "00000000-0000-0000-0000-000000000000",
   "guestId": "00000000-0000-0000-0000-000000000000",
-  "amount": 42.69,
+  "rating": 4,
   "createdDateTime": "2023-08-20 15:30:00",
   "updatedDateTime": "2023-08-20 15:30:00"
 }

@@ -18,6 +18,7 @@ public class Bill : AggregateRoot<BillId>
         DinnerId = dinnerId;
         GuestId = guestId;
         Amount = amount;
+        
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
     }

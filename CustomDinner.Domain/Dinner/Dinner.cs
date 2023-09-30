@@ -27,9 +27,10 @@ public class Dinner : AggregateRoot<DinnerId>
         Name = name;
         Description = description;
         HostId = hostId;
+        MaxReservations = maxReservations;
+        
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
-        MaxReservations = maxReservations;
     }
 
     public static Dinner Create(
