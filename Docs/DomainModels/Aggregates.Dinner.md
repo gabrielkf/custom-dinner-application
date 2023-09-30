@@ -4,7 +4,7 @@
 ```csharp
 class Dinner
 {
-    Dinner Create();
+    public static Dinner Create();
     void AddReservation(DinnerReservation reservation);
     void RemoveReservation(Reservation dinner);
 }
