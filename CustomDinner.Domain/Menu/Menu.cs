@@ -12,8 +12,8 @@ public sealed class Menu : AggregateRoot<MenuId>
     public string Name { get; }
     public string Description { get; }
     public float AverageRating { get; }
-    public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     public HostId HostId { get; set; }
+    public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     public IReadOnlyList<DinnerId> DinnerIds => _dinners.AsReadOnly();
     public IReadOnlyList<MenuReviewId> MenuReviewIds => _reviews.AsReadOnly();
     public DateTime CreatedAt { get; }
@@ -34,7 +34,7 @@ public sealed class Menu : AggregateRoot<MenuId>
 
     public Menu Create(string name, string description, float averageRating)
     {
-        return new(MenuId.CreateUnique(),
+        return new Menu(MenuId.CreateUnique(),
             name,
             description,
             averageRating);

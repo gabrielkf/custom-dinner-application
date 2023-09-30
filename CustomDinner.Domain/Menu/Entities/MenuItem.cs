@@ -18,7 +18,8 @@ public sealed class MenuItem : Entity<MenuItemId>
 
     public static MenuItem Create(string name, string description, decimal price)
     {
-        return new(MenuItemId.CreateUnique(),
+        return new MenuItem(
+            MenuItemId.CreateUnique(),
             name,
             description,
             price);

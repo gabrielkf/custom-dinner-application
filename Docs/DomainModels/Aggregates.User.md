@@ -13,3 +13,4 @@
 ```
 
 > Note: Password should be hashed or cryptographed
+> ToDo: redo in terms of HostId and GuestId

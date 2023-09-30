@@ -1,25 +1,23 @@
 using CustomDinner.Domain.Common;
-using CustomDinner.Domain.Host.ValueObjects;
 
 namespace CustomDinner.Domain.Dinner.ValueObjects;
 
-public class DinnerId : ValueObject
+public class DinnerReservationId : ValueObject
 {
     public Guid Value { get; }
 
-    private DinnerId(Guid value)
+    private DinnerReservationId(Guid value)
     {
         Value = value;
     }
 
-    public static DinnerId CreateUnique()
+    public static DinnerReservationId CreateUnique()
     {
-        return new DinnerId(Guid.NewGuid());
+        return new DinnerReservationId(Guid.NewGuid());
     }
     
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Value;
     }
-
 }

@@ -6,7 +6,7 @@ public class HostId : ValueObject
 {
     public Guid Value { get; }
 
-    public HostId(Guid value)
+    private HostId(Guid value)
     {
         Value = value;
     }

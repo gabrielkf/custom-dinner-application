@@ -12,9 +12,9 @@ public class UserId : ValueObject
         Value = value;
     }
 
-    public static HostId CreateUnique()
+    private static UserId CreateUnique()
     {
-        return new HostId(Guid.NewGuid());
+        return new UserId(Guid.NewGuid());
     }
     
     protected override IEnumerable<object> GetEqualityComponents()

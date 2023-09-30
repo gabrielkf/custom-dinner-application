@@ -1,19 +1,19 @@
 using CustomDinner.Domain.Common;
 
-namespace CustomDinner.Domain.Menu.ValueObjects;
+namespace CustomDinner.Domain.Bill.ValueObjects;
 
-public sealed class MenuId : ValueObject
+public class BillId : ValueObject
 {
     public Guid Value { get; }
 
-    private MenuId(Guid value)
+    private BillId(Guid value)
     {
         Value = value;
     }
 
-    public static MenuId CreateUnique()
+    public static BillId CreateUnique()
     {
-        return new MenuId(Guid.NewGuid());
+        return new BillId(Guid.NewGuid());
     }
     
     protected override IEnumerable<object> GetEqualityComponents()

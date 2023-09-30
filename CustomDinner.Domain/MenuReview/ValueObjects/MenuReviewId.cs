@@ -1,5 +1,4 @@
 using CustomDinner.Domain.Common;
-using CustomDinner.Domain.Host.ValueObjects;
 
 namespace CustomDinner.Domain.MenuReview.ValueObjects;
 
@@ -7,14 +6,14 @@ public class MenuReviewId : ValueObject
 {
     public Guid Value { get; }
 
-    public MenuReviewId(Guid value)
+    private MenuReviewId(Guid value)
     {
         Value = value;
     }
 
-    public static HostId CreateUnique()
+    public static MenuReviewId CreateUnique()
     {
-        return new HostId(Guid.NewGuid());
+        return new MenuReviewId(Guid.NewGuid());
     }
     
     protected override IEnumerable<object> GetEqualityComponents()
