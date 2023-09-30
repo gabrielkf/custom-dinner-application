@@ -11,8 +11,8 @@ public sealed class Menu : AggregateRoot<MenuId>
 {
     public string Name { get; }
     public string Description { get; }
-    public float AverageRating { get; }
     public HostId HostId { get; set; }
+    public float AverageRating { get; } = 0;
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     public IReadOnlyList<DinnerId> DinnerIds => _dinners.AsReadOnly();
     public IReadOnlyList<MenuReviewId> MenuReviewIds => _reviews.AsReadOnly();
@@ -23,20 +23,24 @@ public sealed class Menu : AggregateRoot<MenuId>
     private readonly List<DinnerId> _dinners = new();
     private readonly List<MenuReviewId> _reviews = new();
 
-    private Menu(MenuId id, string name, string description, float averageRating) : base(id)
+    private Menu(MenuId id, string name, string description, HostId hostId) : base(id)
     {
         Name = name;
         Description = description;
-        AverageRating = averageRating;
+        HostId = hostId;
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
     }
 
-    public Menu Create(string name, string description, float averageRating)
+    public static Menu Create(
+        string name,
+        string description,
+        HostId hostId)
     {
-        return new Menu(MenuId.CreateUnique(),
+        return new Menu(
+            MenuId.CreateUnique(),
             name,
             description,
-            averageRating);
+            hostId);
     }
 }

@@ -1,4 +1,5 @@
 using CustomDinner.Domain.Common;
+using CustomDinner.Domain.Dinner.Entity;
 using CustomDinner.Domain.Dinner.ValueObjects;
 using CustomDinner.Domain.Host.ValueObjects;
 
@@ -8,25 +9,40 @@ public class Dinner : AggregateRoot<DinnerId>
 {
     public string Name { get; }
     public string Description { get; }
+    public HostId HostId { get; }
+    public int MaxReservations { get; }
+    public IReadOnlyList<DinnerReservation> DinnerReservations => _dinnerReservations.AsReadOnly();
     public DateTime CreatedAt { get; }
     public DateTime UpdatedAt { get; }
-    public HostId HostId { get; set; }
+
+    private List<DinnerReservation> _dinnerReservations = new();
     
-    private Dinner(DinnerId id, string name, string description, HostId hostId) : base(id)
+    private Dinner(
+        DinnerId id,
+        string name,
+        string description,
+        HostId hostId,
+        int maxReservations) : base(id)
     {
         Name = name;
         Description = description;
         HostId = hostId;
         CreatedAt = DateTime.Now;
         UpdatedAt = DateTime.Now;
+        MaxReservations = maxReservations;
     }
 
-    public Dinner Create(string name, string description, HostId hostId)
+    public static Dinner Create(
+        string name,
+        string description,
+        HostId hostId,
+        int maxReservations)
     {
         return new Dinner(
             DinnerId.CreateUnique(),
             name,
             description,
-            hostId);
+            hostId,
+            maxReservations);
     }
 }
