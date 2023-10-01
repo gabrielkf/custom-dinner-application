@@ -13,6 +13,8 @@ public class User : AggregateRoot<UserId>
     public string LastName { get; } = null!;
     public string Email { get; } = null!;
     public string Password { get; } = null!;
+    public DateTime CreatedAt { get; }
+    public DateTime UpdatedAt { get; }
 
     private User(
         UserId id,
@@ -29,6 +31,9 @@ public class User : AggregateRoot<UserId>
         Password = password;
         HostId = hostId;
         GuestId = guestId;
+        
+        CreatedAt = DateTime.Now;
+        UpdatedAt = DateTime.Now;
     }
     
     public static User Create(

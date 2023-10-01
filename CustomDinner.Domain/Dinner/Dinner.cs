@@ -15,7 +15,7 @@ public class Dinner : AggregateRoot<DinnerId>
     public DateTime CreatedAt { get; }
     public DateTime UpdatedAt { get; }
 
-    private List<DinnerReservation> _dinnerReservations = new();
+    private readonly List<DinnerReservation> _dinnerReservations = new();
     
     private Dinner(
         DinnerId id,
