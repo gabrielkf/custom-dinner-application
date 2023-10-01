@@ -2,7 +2,7 @@ using CustomDinner.Application.Authentication.Commands.Common;
 using CustomDinner.Application.Common.Interfaces.Authentication;
 using CustomDinner.Application.Common.Persistence;
 using CustomDinner.Domain.Common.Errors;
-using CustomDinner.Domain.Entities;
+using CustomDinner.Domain.User;
 using ErrorOr;
 using MediatR;
 
@@ -30,13 +30,11 @@ public class RegisterCommandHandler
             return AppErrors.User.DuplicateEmail;
         }
 
-        var user = new User
-        {
-            FirstName = command.FirstName,
-            LastName = command.LastName,
-            Email = command.Email,
-            Password = command.Password
-        };
+        var user = User.Create(
+            command.FirstName,
+            command.LastName,
+            command.Email,
+            command.Password);
         
         _userRepository.Add(user);
         

@@ -3,7 +3,7 @@ using System.Security.Claims;
 using System.Text;
 
 using CustomDinner.Application.Common.Interfaces.Authentication;
-using CustomDinner.Domain.Entities;
+using CustomDinner.Domain.User;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 

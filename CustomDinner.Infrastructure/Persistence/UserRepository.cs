@@ -1,5 +1,5 @@
 using CustomDinner.Application.Common.Persistence;
-using CustomDinner.Domain.Entities;
+using CustomDinner.Domain.User;
 
 namespace CustomDinner.Infrastructure.Persistence;
 

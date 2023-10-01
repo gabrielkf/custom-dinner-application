@@ -1,10 +1,51 @@
-namespace CustomDinner.Domain.Entities;
+using CustomDinner.Domain.Common;
+using CustomDinner.Domain.Guest.ValueObjects;
+using CustomDinner.Domain.Host.ValueObjects;
+using CustomDinner.Domain.User.ValueObjects;
 
-public class User
+namespace CustomDinner.Domain.User;
+
+public class User : AggregateRoot<UserId>
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
-    public string FirstName { get; set; } = null!;
-    public string LastName { get; set; } = null!;
-    public string Email { get; set; } = null!;
-    public string Password { get; set; } = null!;
+    public HostId? HostId { get; }
+    public GuestId? GuestId { get; }
+    public string FirstName { get; } = null!;
+    public string LastName { get; } = null!;
+    public string Email { get; } = null!;
+    public string Password { get; } = null!;
+
+    private User(
+        UserId id,
+        string firstName,
+        string lastName,
+        string email,
+        string password,
+        HostId? hostId,
+        GuestId? guestId) : base(id)
+    {
+        FirstName = firstName;
+        LastName = lastName;
+        Email = email;
+        Password = password;
+        HostId = hostId;
+        GuestId = guestId;
+    }
+    
+    public static User Create(
+        string firstName,
+        string lastName,
+        string email,
+        string password,
+        HostId? hostId = null,
+        GuestId? guestId = null)
+    {
+        return new User(
+            UserId.CreateUnique(),
+            firstName,
+            lastName,
+            email,
+            password,
+            hostId,
+            guestId);
+    }
 }
