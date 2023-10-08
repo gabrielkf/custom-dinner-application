@@ -1,4 +1,4 @@
-namespace CustomDinner.Domain.Models;
+namespace CustomDinner.Domain.Common;
 
 public class AggregateRoot<TId> : Entity<TId> where TId : notnull
 {

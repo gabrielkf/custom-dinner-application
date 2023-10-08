@@ -10,6 +10,17 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDinner.Domain", "Cust
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomDinner.Contracts", "CustomDinner.Contracts\CustomDinner.Contracts.csproj", "{26CA3238-A764-41C9-8239-B8FFCE0A753B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{267C2D3C-CCED-483F-B2CC-6901735C28FC}"
+	ProjectSection(SolutionItems) = preProject
+		Docs\DomainModels\Aggregates.User.md = Docs\DomainModels\Aggregates.User.md
+		Docs\DomainModels\Aggregates.Dinner.md = Docs\DomainModels\Aggregates.Dinner.md
+		Docs\DomainModels\Aggregates.Menu.md = Docs\DomainModels\Aggregates.Menu.md
+		Docs\DomainModels\Aggregates.Bill.md = Docs\DomainModels\Aggregates.Bill.md
+		Docs\DomainModels\Aggregates.MenuReview.md = Docs\DomainModels\Aggregates.MenuReview.md
+		Docs\DomainModels\Aggregates.Host.md = Docs\DomainModels\Aggregates.Host.md
+		Docs\DomainModels\Aggregates.Guest.md = Docs\DomainModels\Aggregates.Guest.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
