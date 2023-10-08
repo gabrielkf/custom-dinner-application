@@ -44,3 +44,6 @@ class Menu
   ]
 }
 ```
+
+# REST endpoint
+`POST /host/{hostId}/menus`

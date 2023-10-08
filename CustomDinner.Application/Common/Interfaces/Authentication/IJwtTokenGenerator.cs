@@ -1,4 +1,4 @@
-using CustomDinner.Domain.User;
+using CustomDinner.Domain.UserAggregate;
 
 namespace CustomDinner.Application.Common.Interfaces.Authentication;
 
