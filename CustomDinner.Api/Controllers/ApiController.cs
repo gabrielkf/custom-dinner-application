@@ -27,7 +27,8 @@ public class ApiController : ControllerBase
         return SelectedProblem(errors);
     }
 
-    private static bool TryGetValidationErrorsModelStateDictionary(List<Error> errors,
+    private static bool TryGetValidationErrorsModelStateDictionary(
+        List<Error> errors,
         out ModelStateDictionary? modelStateDictionary)
     {
         if (errors.All(err => err.Type == ErrorType.Validation))
