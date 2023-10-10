@@ -1,8 +1,8 @@
-using CustomDinner.Application.Authentication.Commands.Common;
+using CustomDinner.Application.Authentication.Common;
 using ErrorOr;
 using MediatR;
 
-namespace CustomDinner.Application.Authentication.Commands.Login;
+namespace CustomDinner.Application.Authentication.Login;
 
 public record LoginQuery(
     string Email,

@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CustomDinner.Application.Authentication.Commands.Login;
+namespace CustomDinner.Application.Authentication.Login;
 
 public class LoginQueryValidator : AbstractValidator<LoginQuery>
 {

@@ -1,6 +1,6 @@
 using CustomDinner.Domain.UserAggregate;
 
-namespace CustomDinner.Application.Authentication.Commands.Common;
+namespace CustomDinner.Application.Authentication.Common;
 
 public record AuthenticationResult(
     User User,

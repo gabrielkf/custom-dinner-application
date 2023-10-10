@@ -1,6 +1,6 @@
 using FluentValidation;
 
-namespace CustomDinner.Application.Authentication.Commands.Register;
+namespace CustomDinner.Application.Authentication.Register;
 
 public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
 {

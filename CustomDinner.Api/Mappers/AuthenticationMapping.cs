@@ -1,6 +1,6 @@
 using System.Reflection;
 using Contracts.Authentication;
-using CustomDinner.Application.Authentication.Commands.Common;
+using CustomDinner.Application.Authentication.Common;
 using Mapster;
 using MapsterMapper;
 

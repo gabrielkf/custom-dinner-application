@@ -1,6 +1,6 @@
 using Contracts.Authentication;
-using CustomDinner.Application.Authentication.Commands.Login;
-using CustomDinner.Application.Authentication.Commands.Register;
+using CustomDinner.Application.Authentication.Login;
+using CustomDinner.Application.Authentication.Register;
 using CustomDinner.Domain.Common.Errors;
 using MapsterMapper;
 using MediatR;

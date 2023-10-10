@@ -1,4 +1,4 @@
-using CustomDinner.Application.Authentication.Commands.Common;
+using CustomDinner.Application.Authentication.Common;
 using CustomDinner.Application.Common.Interfaces.Authentication;
 using CustomDinner.Application.Common.Persistence;
 using CustomDinner.Domain.Common.Errors;
@@ -6,7 +6,7 @@ using CustomDinner.Domain.UserAggregate;
 using ErrorOr;
 using MediatR;
 
-namespace CustomDinner.Application.Authentication.Commands.Login;
+namespace CustomDinner.Application.Authentication.Login;
 
 public class LoginQueryHandler
     : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>

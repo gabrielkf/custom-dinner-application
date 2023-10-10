@@ -1,8 +1,8 @@
-using CustomDinner.Application.Authentication.Commands.Common;
+using CustomDinner.Application.Authentication.Common;
 using ErrorOr;
 using MediatR;
 
-namespace CustomDinner.Application.Authentication.Commands.Register;
+namespace CustomDinner.Application.Authentication.Register;
 
 public record RegisterCommand(
     string FirstName,
