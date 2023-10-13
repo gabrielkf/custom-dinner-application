@@ -1,4 +1,6 @@
 using Contracts.Menus;
+using CustomDinner.Application.Menus.CreateMenu;
+using MapsterMapper;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,16 +10,25 @@ namespace CustomDinner.Api.Controllers;
 public class MenusController : ApiController
 {
     private readonly ISender _mediator;
-    public MenusController(ISender mediator)
+    private readonly IMapper _mapper;
+    
+    public MenusController(ISender mediator, IMapper mapper)
     {
         _mediator = mediator;
+        _mapper = mapper;
     }
     
     [HttpPost]
-    public IActionResult CreateMenu(
+    public async Task<IActionResult> CreateMenu(
         CreateMenuRequest request,
         string hostId)
     {
-        return Ok(request);
+        var command = _mapper.Map<CreateMenuCommand>((request, hostId));
+
+        var createMenuResult = await _mediator.Send(command);
+
+        return createMenuResult.Match(
+            success => Created($"/menus/{success.Id}", success),
+            errors => Problem(errors));
     } 
 }
