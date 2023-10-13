@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace CustomDinner.Application.Authentication.Register;
 
-public class RegisterCommandValidator : AbstractValidator<RegisterCommand>
+public class RegisterValidator : AbstractValidator<RegisterCommand>
 {
-    public RegisterCommandValidator()
+    public RegisterValidator()
     {
         RuleFor(registerCommand => registerCommand.FirstName).NotEmpty();
         RuleFor(registerCommand => registerCommand.LastName).NotEmpty();

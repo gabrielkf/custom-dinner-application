@@ -8,13 +8,13 @@ using MediatR;
 
 namespace CustomDinner.Application.Authentication.Register;
 
-public class RegisterCommandHandler
+public class RegisterHandler
     : IRequestHandler<RegisterCommand, ErrorOr<AuthenticationResult>>
 {
     private IUserRepository _userRepository;
     private IJwtTokenGenerator _jwtTokenGenerator;
     
-    public RegisterCommandHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
+    public RegisterHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
     {
         _userRepository = userRepository;
         _jwtTokenGenerator = jwtTokenGenerator;

@@ -8,13 +8,13 @@ using MediatR;
 
 namespace CustomDinner.Application.Authentication.Login;
 
-public class LoginQueryHandler
+public class LoginHandler
     : IRequestHandler<LoginQuery, ErrorOr<AuthenticationResult>>
 {
     private IUserRepository _userRepository;
     private IJwtTokenGenerator _jwtTokenGenerator;
 
-    public LoginQueryHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
+    public LoginHandler(IUserRepository userRepository, IJwtTokenGenerator jwtTokenGenerator)
     {
         _userRepository = userRepository;
         _jwtTokenGenerator = jwtTokenGenerator;

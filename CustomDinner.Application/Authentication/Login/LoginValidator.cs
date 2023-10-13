@@ -2,9 +2,9 @@ using FluentValidation;
 
 namespace CustomDinner.Application.Authentication.Login;
 
-public class LoginQueryValidator : AbstractValidator<LoginQuery>
+public class LoginValidator : AbstractValidator<LoginQuery>
 {
-    public LoginQueryValidator()
+    public LoginValidator()
     {
         RuleFor(loginQuery => loginQuery.Email).EmailAddress().NotEmpty();
         RuleFor(loginQuery => loginQuery.Password).NotEmpty();
