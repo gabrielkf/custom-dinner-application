@@ -15,7 +15,7 @@ public record MenuSectionResponse(
     Guid Id,
     string Name,
     string Description,
-    List<MenuItemResponse> MenuItemResponse);
+    List<MenuItemResponse> Items);
     
 public record MenuItemResponse(
     Guid Id,
