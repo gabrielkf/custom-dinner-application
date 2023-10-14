@@ -18,4 +18,5 @@ public record MenuSectionCommand(
     
 public record MenuItemCommand(
     string Name,
-    string Description);
+    string Description,
+    decimal Price);

@@ -11,15 +11,25 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace CustomDinner.Infrastructure;
 
-public static class DependencyInjection
+public static class 
+    DependencyInjection
 {
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        services.AddAuth(configuration);
-        services.AddSingleton<IUserRepository, UserRepository>();
+        services
+            .AddAuth(configuration)
+            .AddPersistence();
         
+        return services;
+    }
+
+    private static IServiceCollection AddPersistence(this IServiceCollection services)
+    {
+        services.AddSingleton<IUserRepository, UserRepository>();
+        services.AddSingleton<IMenuRepository, MenuRepository>();
+
         return services;
     }
 

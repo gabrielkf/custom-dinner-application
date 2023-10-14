@@ -12,4 +12,5 @@ public record MenuSectionRequest(
     
 public record MenuItemRequest(
     string Name,
-    string Description);
+    string Description,
+    decimal Price);

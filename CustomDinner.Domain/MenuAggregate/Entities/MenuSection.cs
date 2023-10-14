@@ -11,14 +11,26 @@ public sealed class MenuSection : Entity<MenuSectionId>
 
     private readonly List<MenuItem> _items = new();
     
-    private MenuSection(MenuSectionId id, string name, string description) : base(id)
+    private MenuSection(
+        MenuSectionId id,
+        string name,
+        string description,
+        IEnumerable<MenuItem> items) : base(id)
     {
         Name = name;
         Description = description;
+        _items.AddRange(items);
     }
 
-    public static MenuSection Create(string name, string description)
+    public static MenuSection Create(
+        string name,
+        string description,
+        IEnumerable<MenuItem> items)
     {
-        return new MenuSection(MenuSectionId.CreateUnique(), name, description);
+        return new MenuSection(
+            MenuSectionId.CreateUnique(),
+            name,
+            description,
+            items);
     }
 }
