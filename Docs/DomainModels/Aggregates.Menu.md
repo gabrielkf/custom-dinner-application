@@ -62,7 +62,10 @@ class Menu
       ]
     }
   ],
-  "averageRating": 4.4,
+  "averageRating": {
+      "value": 4.4,
+      "numRatings": 42
+  },
   "createdDateTime": "2023-08-20 15:30:00",
   "updatedDateTime": "2023-08-20 15:30:00",
   "hostId": "00000000-0000-0000-0000-000000000000",
