@@ -9,7 +9,7 @@ public record CreateMenuCommand(
     string Name,
     string Description,
     List<MenuSectionCommand> Sections,
-    string HostId) : IRequest<ErrorOr<Menu>>;
+    Guid HostId) : IRequest<ErrorOr<Menu>>;
     
 public record MenuSectionCommand(
     string Name,

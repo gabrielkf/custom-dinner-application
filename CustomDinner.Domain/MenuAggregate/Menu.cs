@@ -12,7 +12,7 @@ public sealed class Menu : AggregateRoot<MenuId>
     public string Name { get; }
     public string Description { get; }
     public HostId HostId { get; }
-    public float AverageRating { get; } = 0;
+    public AverageRating AverageRating { get; }
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
     public IReadOnlyList<DinnerId> DinnerIds => _dinners.AsReadOnly();
     public IReadOnlyList<MenuReviewId> MenuReviewIds => _reviews.AsReadOnly();
@@ -33,6 +33,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         Name = name;
         Description = description;
         HostId = hostId;
+        AverageRating = new AverageRating(); // todo: calculate value
         _sections.AddRange(sections);
         
         CreatedAt = DateTime.Now;
