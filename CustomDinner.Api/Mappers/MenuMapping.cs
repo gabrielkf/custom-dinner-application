@@ -26,7 +26,7 @@ public class MenuMapping : IRegister
             .Map(dest => dest.DinnerIds,
                 src => src.DinnerIds.Select(dinnerId => dinnerId.Value))
             .Map(dest => dest.MenuReviewIds,
-                src => src.MenuReviewIds.Select(menuReviewId => menuReviewId.Value));
+                src => src.ReviewIds.Select(menuReviewId => menuReviewId.Value));
 
         config.NewConfig<MenuSection, MenuSectionResponse>()
             .Map(dest => dest.Id,
