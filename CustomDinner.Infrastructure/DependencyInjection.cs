@@ -32,8 +32,8 @@ public static class
         services.AddDbContext<CustomDinnerDbContext>(
             options => options.UseSqlServer());
         
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IMenuRepository, MenuRepository>();
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
 
         return services;
     }
