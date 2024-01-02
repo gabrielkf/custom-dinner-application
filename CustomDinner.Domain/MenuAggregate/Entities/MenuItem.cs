@@ -5,9 +5,13 @@ namespace CustomDinner.Domain.MenuAggregate.Entities;
 
 public sealed class MenuItem : Entity<MenuItemId>
 {
-    public string Name { get; }
-    public string Description { get; }
-    public decimal Price { get; }
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public decimal Price { get; private set; }
+
+    #pragma warning disable CS8618
+        private MenuItem() { }
+    #pragma warning restore CS8618
     
     private MenuItem(MenuItemId id, string name, string description, decimal price) : base(id)
     {
