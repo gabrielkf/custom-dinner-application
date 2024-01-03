@@ -106,6 +106,10 @@ public class MenuConfigurations : IEntityTypeConfiguration<Menu>
                             itemsBuilder
                                 .Property(item => item.Description)
                                 .HasMaxLength(DescriptionMaxLength);
+
+                            itemsBuilder
+                                .Property(item => item.Price)
+                                .HasPrecision(10, 2);
                         });
                 
                 sectionBuilder.Navigation(section => section.Items).Metadata.SetField("_items");
