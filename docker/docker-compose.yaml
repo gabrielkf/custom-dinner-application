@@ -1,15 +1,16 @@
 services:
-  db:
+  custom-dinner-db:
     container_name: "custom-dinner-db"
     environment:
-      ACCEPT_EULA: "Y"
-      SA_PASSWORD: local_db
-    image: mcr.microsoft.com/azure-sql-edge:1.0.4
+      ACCEPT_EULA: 1
+      MSSQL_SA_PASSWORD: L0c4l_D4t4b4s3!
+      HOMEBREW_NO_ENV_FILTERING: 1
+    image: mcr.microsoft.com/azure-sql-edge
     restart: unless-stopped
     volumes:
-      - mssql:/data/db
+      - mssqlvol:/data/db
     ports:
       - 1433:1433
         
 volumes: 
-  mssql:
+  mssqlvol:
