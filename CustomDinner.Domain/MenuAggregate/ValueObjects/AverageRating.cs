@@ -4,7 +4,7 @@ namespace CustomDinner.Domain.MenuAggregate.ValueObjects;
 
 public class AverageRating : ValueObject
 {
-    public float Value { get; set; }
+    public double Value { get; set; }
     public int NumRatings { get; set; }
     
     protected override IEnumerable<object> GetEqualityComponents()

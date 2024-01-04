@@ -19,8 +19,8 @@ public class MenuConfigurations : IEntityTypeConfiguration<Menu>
     private const string MenuDinnerIdTableName = "MenuDinnerIds";
     private const string MenuReviewIdTableName = "MenuReviewIds";
     
-    private const int NameMaxLength = 100;
-    private const int DescriptionMaxLength = 500;
+    private const int NameMaxLength = 50;
+    private const int DescriptionMaxLength = 200;
 
     public void Configure(EntityTypeBuilder<Menu> builder)
     {
@@ -70,6 +70,7 @@ public class MenuConfigurations : IEntityTypeConfiguration<Menu>
                 
                 sectionBuilder
                     .Property(section => section.Id)
+                    .HasColumnName(nameof(MenuSectionId))
                     .ValueGeneratedNever()
                     .HasConversion(sectionId => sectionId.Value,
                         id => MenuSectionId.Create(id));
