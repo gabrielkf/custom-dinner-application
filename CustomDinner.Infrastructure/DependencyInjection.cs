@@ -30,7 +30,7 @@ public static class
     private static IServiceCollection AddPersistence(this IServiceCollection services)
     {
         services.AddDbContext<CustomDinnerDbContext>(
-            options => options.UseSqlServer());
+            options => options.UseSqlServer("Server=localhost;Database=CustomDinner;User Id=sa;Password=L0c4l_D4t4b4s3!;TrustServerCertificate=true"));
         
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IMenuRepository, MenuRepository>();
