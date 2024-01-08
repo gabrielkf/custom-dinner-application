@@ -3,7 +3,9 @@ using CustomDinner.Application.Common.Interfaces.Authentication;
 using CustomDinner.Application.Common.Persistence;
 using CustomDinner.Infrastructure.Authentication;
 using CustomDinner.Infrastructure.Persistence;
+using CustomDinner.Infrastructure.Persistence.Repositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
@@ -27,8 +29,11 @@ public static class
 
     private static IServiceCollection AddPersistence(this IServiceCollection services)
     {
-        services.AddSingleton<IUserRepository, UserRepository>();
-        services.AddSingleton<IMenuRepository, MenuRepository>();
+        services.AddDbContext<CustomDinnerDbContext>(
+            options => options.UseSqlServer("Server=localhost;Database=CustomDinner;User Id=sa;Password=L0c4l_D4t4b4s3!;TrustServerCertificate=true"));
+        
+        services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IMenuRepository, MenuRepository>();
 
         return services;
     }

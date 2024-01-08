@@ -1,4 +1,3 @@
-using CustomDinner.Domain.HostAggregate.ValueObjects;
 using CustomDinner.Domain.MenuAggregate;
 using ErrorOr;
 using MediatR;
@@ -9,7 +8,7 @@ public record CreateMenuCommand(
     string Name,
     string Description,
     List<MenuSectionCommand> Sections,
-    string HostId) : IRequest<ErrorOr<Menu>>;
+    Guid HostId) : IRequest<ErrorOr<Menu>>;
     
 public record MenuSectionCommand(
     string Name,

@@ -9,19 +9,23 @@ namespace CustomDinner.Domain.MenuAggregate;
 
 public sealed class Menu : AggregateRoot<MenuId>
 {
-    public string Name { get; }
-    public string Description { get; }
-    public HostId HostId { get; }
-    public float AverageRating { get; } = 0;
+    public string Name { get; private set; }
+    public string Description { get; private set; }
+    public HostId HostId { get; private set; }
+    public AverageRating AverageRating { get; private set; }
     public IReadOnlyList<MenuSection> Sections => _sections.AsReadOnly();
-    public IReadOnlyList<DinnerId> DinnerIds => _dinners.AsReadOnly();
-    public IReadOnlyList<MenuReviewId> MenuReviewIds => _reviews.AsReadOnly();
-    public DateTime CreatedAt { get; }
-    public DateTime UpdatedAt { get; }
+    public IReadOnlyList<DinnerId> DinnerIds => _dinnerIds.AsReadOnly();
+    public IReadOnlyList<MenuReviewId> ReviewIds => _reviewIds.AsReadOnly();
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
 
     private readonly List<MenuSection> _sections = new();
-    private readonly List<DinnerId> _dinners = new();
-    private readonly List<MenuReviewId> _reviews = new();
+    private readonly List<DinnerId> _dinnerIds = new();
+    private readonly List<MenuReviewId> _reviewIds = new();
+    
+    #pragma warning disable CS8618
+        private Menu() { }
+    #pragma warning restore CS8618
 
     private Menu(
         MenuId id,
@@ -33,6 +37,7 @@ public sealed class Menu : AggregateRoot<MenuId>
         Name = name;
         Description = description;
         HostId = hostId;
+        AverageRating = new AverageRating(); // todo: calculate value
         _sections.AddRange(sections);
         
         CreatedAt = DateTime.Now;

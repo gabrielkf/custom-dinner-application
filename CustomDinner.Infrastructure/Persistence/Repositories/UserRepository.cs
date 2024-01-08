@@ -1,7 +1,7 @@
 using CustomDinner.Application.Common.Persistence;
 using CustomDinner.Domain.UserAggregate;
 
-namespace CustomDinner.Infrastructure.Persistence;
+namespace CustomDinner.Infrastructure.Persistence.Repositories;
 
 public class UserRepository : IUserRepository
 {

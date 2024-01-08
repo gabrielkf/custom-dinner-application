@@ -11,6 +11,11 @@ public sealed class MenuSectionId : ValueObject
         Value = value;
     }
 
+    public static MenuSectionId Create(Guid id)
+    {
+        return new MenuSectionId(id);
+    }
+
     public static MenuSectionId CreateUnique()
     {
         return new MenuSectionId(Guid.NewGuid());

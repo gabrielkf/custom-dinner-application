@@ -8,12 +8,16 @@ namespace CustomDinner.Domain.MenuReviewAggregate;
 
 public class MenuReview : AggregateRoot<MenuReviewId>
 {
-    public MenuId MenuId { get; }
-    public HostId HostId { get; }
-    public GuestId GuestId { get; }
-    public int Rating { get; }
-    public DateTime CreatedAt { get; }
-    public DateTime UpdatedAt { get; }
+    public MenuId MenuId { get; private set; }
+    public HostId HostId { get; private set; }
+    public GuestId GuestId { get; private set; }
+    public int Rating { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
+
+    #pragma warning disable CS8618
+        private MenuReview() { }
+    #pragma warning restore CS8618
     
     public MenuReview(
         MenuReviewId id,
