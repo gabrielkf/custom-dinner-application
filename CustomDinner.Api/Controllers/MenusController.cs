@@ -23,7 +23,18 @@ public class MenusController : ApiController
         CreateMenuRequest request,
         Guid hostId)
     {
-        var command = _mapper.Map<CreateMenuCommand>((request, hostId));
+        var command = new CreateMenuCommand(
+            request.Name,
+            request.Description,
+            request.Sections
+                .Select(s => new MenuSectionCommand(
+                        s.Name,
+                        s.Description,
+                        s.Items
+                            .Select(i => new MenuItemCommand(i.Name, i.Description, i.Price))
+                            .ToList()))
+                .ToList(),
+            hostId); 
 
         var createMenuResult = await _mediator.Send(command);
 

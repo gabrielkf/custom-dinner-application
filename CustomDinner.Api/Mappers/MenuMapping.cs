@@ -1,6 +1,5 @@
 using Contracts.Menus;
 using CustomDinner.Application.Menus.CreateMenu;
-using CustomDinner.Domain.HostAggregate.ValueObjects;
 using CustomDinner.Domain.MenuAggregate;
 using CustomDinner.Domain.MenuAggregate.Entities;
 using Mapster;
@@ -11,11 +10,11 @@ public class MenuMapping : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<(CreateMenuRequest Request, string HostId), CreateMenuCommand>()
-            .Map(dest => dest,
-                src => src.Request)
-            .Map(dest => dest.HostId,
-                src => src.HostId);
+        // config.NewConfig<(CreateMenuRequest Request, string HostId), CreateMenuCommand>()
+        //     .Map(dest => dest,
+        //         src => src.Request)
+        //     .Map(dest => dest.HostId,
+        //         src => src.HostId);
 
         // todo: add AverageRating
         config.NewConfig<Menu, MenuResponse>()
