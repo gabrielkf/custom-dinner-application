@@ -25,5 +25,4 @@ public class HostId : ValueObject
     {
         yield return Value;
     }
-
 }

@@ -7,14 +7,18 @@ namespace CustomDinner.Domain.UserAggregate;
 
 public class User : AggregateRoot<UserId>
 {
-    public HostId? HostId { get; }
-    public GuestId? GuestId { get; }
-    public string FirstName { get; } = null!;
-    public string LastName { get; } = null!;
-    public string Email { get; } = null!;
-    public string Password { get; } = null!;
-    public DateTime CreatedAt { get; }
-    public DateTime UpdatedAt { get; }
+    public HostId? HostId { get; private set; }
+    public GuestId? GuestId { get; private set; }
+    public string FirstName { get; private set; }
+    public string LastName { get; private set; }
+    public string Email { get; private set; }
+    public string Password { get; private set; }
+    public DateTime CreatedAt { get; private set; }
+    public DateTime UpdatedAt { get; private set; }
+    
+    #pragma warning disable CS8618
+    private User() {}
+    #pragma warning restore CS8618
 
     private User(
         UserId id,
