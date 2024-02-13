@@ -3,7 +3,7 @@ namespace CustomDinner.Domain.Common;
 public abstract class Entity<TId> : IEquatable<Entity<TId>>
     where TId : notnull
 {
-    public TId Id { get; private set; }
+    public TId Id { get; }
 
     #pragma warning disable CS8618
         protected Entity() { }
